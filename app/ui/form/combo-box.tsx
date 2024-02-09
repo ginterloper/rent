@@ -1,6 +1,6 @@
-import { Fragment, useState } from 'react'
-import { Combobox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Fragment, useState } from 'react';
+import { Combobox, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 export interface Option {
 		id: number;
@@ -11,9 +11,10 @@ interface Props {
 		label: string;
 		options: Option[];
 		necessary?: boolean;
+		onChange: (id: number, value: string) => void;
 }
 
-export default function ComboboxField({ label, options, necessary }: Props) {
+export default function ComboboxField({ label, options, necessary, onChange }: Props) {
 		const [selected, setSelected] = useState(options[0])
 		const [query, setQuery] = useState('')
 		
@@ -30,7 +31,7 @@ export default function ComboboxField({ label, options, necessary }: Props) {
 		return (
 				<div className="relative my-6">
 						<label className='text-xs ml-3'>{necessary ? '* ' : ''}{label}:</label>
-						<Combobox value={selected} onChange={setSelected} aria-describedby="error">
+						<Combobox value={selected} onChange={setSelected}>
 								<div className="relative mt-1">
 										<div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
 												<Combobox.Input

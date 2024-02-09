@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ComboboxField, { Option } from '@/app/ui/form/combo-box';
-import TextField from '@/app/ui/form/TextBox';
-import SubmitButton from '@/app/ui/form/Button';
+import TextField from '@/app/ui/form/textbox';
+import SubmitButton from '@/app/ui/form/button';
 import { saveFormDataAsJSON } from '@/app/lib/data';
 
 interface Element {
@@ -10,7 +10,7 @@ interface Element {
   label: string;
   options?: Option[];
   placeholder?: string;
-	necessary?: boolean;
+  necessary?: boolean;
 }
 
 interface DynamicFormProps {
@@ -19,18 +19,25 @@ interface DynamicFormProps {
 
 function DynamicForm({ elements }: DynamicFormProps) {
   const [formData, setFormData] = useState<{ [key: number]: string }>({});
+  const [formError, setFormError] = useState(true); // Начальное значение ошибки - форма не заполнена
 
   const handleChange = (id: number, value: string) => {
     setFormData({
       ...formData,
       [id]: value
     });
+
+    // Проверяем, есть ли хотя бы одно заполненное поле
+    const isFormFilled = Object.values({ ...formData, [id]: value }).some(value => value.trim() !== '');
+    setFormError(!isFormFilled);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    saveFormDataAsJSON(formData);
-    setFormData({});
+    if (!formError) {
+      saveFormDataAsJSON(formData);
+      setFormData({});
+    }
   };
 
   return (
@@ -43,6 +50,7 @@ function DynamicForm({ elements }: DynamicFormProps) {
               label={element.label}
               options={element.options || []}
               necessary={element.necessary || false}
+							onChange={handleChange}
             />
           );
         } else if (element.type === 'text') {
@@ -59,7 +67,8 @@ function DynamicForm({ elements }: DynamicFormProps) {
         }
         return null;
       })}
-      <SubmitButton label="Применить" />
+      <SubmitButton label="Создать" disabled={formError} />
+			{formError && <div className="text-sm text-red-500">Пожалуйста, заполните все обязательные поля</div>}
     </form>
   );
 }
