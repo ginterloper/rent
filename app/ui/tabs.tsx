@@ -1,25 +1,13 @@
 'use client';
-import { useState } from 'react'
 import { Tab } from '@headlessui/react'
-import Form from "@/app/ui/form";
-
-interface TabData {
-	id: number;
-	type: string;
-	label: string;
-	necessary?: boolean;
-	options?: { id: number; label: string }[];
-	placeholder?: string;
-}
+import Form, { Element } from "@/app/ui/form";
 
 interface Props {
 	className?: string;
-	tabData: { [key: string]: TabData[] };
+	tabData: { [key: string]: Element[] };
 }
 
 export default function Tabs({ className, tabData }: Props ) {
-	
-
 	return (
 		<div className={className}>
 			<Tab.Group>
@@ -29,9 +17,8 @@ export default function Tabs({ className, tabData }: Props ) {
 							key={tabData}
 							className={({ selected }) =>
 									`w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-									'focus:outline-none',
 									${selected
-										? 'bg-white text-blue-700 shadow'
+										? 'bg-white text-blue-700 shadow focus:outline-none'
 										: 'text-gray-500 hover:bg-white/[0.12] hover:text-white'}`
 							}
 						>
@@ -40,7 +27,7 @@ export default function Tabs({ className, tabData }: Props ) {
 					))}
 				</Tab.List>
 				<Tab.Panels className="mt-2">
-					{Object.values(tabData).map((els, idx) => (
+					{Object.values(tabData).map((els:Element[], idx) => (
 						<Tab.Panel
 							key={idx}
 							className='rounded-xl bg-white p-3 focus:outline-none'

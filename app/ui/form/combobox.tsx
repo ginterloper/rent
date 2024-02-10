@@ -5,6 +5,7 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 export interface Option {
 		id: number;
 		label: string;
+		value: string;
 }
 
 interface Props {
@@ -28,15 +29,22 @@ export default function ComboboxField({ label, options, necessary, onChange }: P
 										.includes(query.toLowerCase().replace(/\s+/g, ''))
 						)
 
+		const handleComboboxChange = (selectedOption: Option | null) => {
+				if (selectedOption) {
+						setSelected(selectedOption);
+						onChange(selectedOption.id, selectedOption.value);
+				}
+		};
+
 		return (
-				<div className="relative my-6">
-						<label className='text-xs ml-3'>{necessary ? '* ' : ''}{label}:</label>
-						<Combobox value={selected} onChange={setSelected}>
+				<div className="relative mb-3 -mt-5">
+						<label className='relative z-10 top-7 text-xs ml-3'>{necessary ? <span className='text-red-500'>* </span> : ''}{label}:</label>
+						<Combobox value={selected} by="id" onChange={handleComboboxChange}>
 								<div className="relative mt-1">
 										<div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
 												<Combobox.Input
-														className="w-full h-9 rounded-lg border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-blue-500"
-														displayValue={(el) => el.label}
+														className="w-full h-12 rounded-lg border-none py-2 pl-3 pt-5 pr-10 text-sm leading-5 text-gray-900 focus:ring-1 focus:ring-inset focus:ring-blue-500"
+														displayValue={(el:Option) => el.label}
 														onChange={(event) => setQuery(event.target.value)}
 												/>
 												<Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -53,13 +61,13 @@ export default function ComboboxField({ label, options, necessary, onChange }: P
 												leaveTo="opacity-0"
 												afterLeave={() => setQuery('')}
 										>
-												<Combobox.Options className="absolute z-10 text-xs mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm bottom-auto">
+												<Combobox.Options className="absolute z-20 text-xs mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm bottom-auto">
 														{filteredOptions.length === 0 && query !== '' ? (
 																<div className="relative cursor-default select-none px-4 py-2 text-gray-700">
 																		Ничего не найдено.
 																</div>
 														) : (
-															filteredOptions.map((el) => (
+																filteredOptions.map((el) => (
 																		<Combobox.Option
 																				key={el.id}
 																				className={({ active }) =>

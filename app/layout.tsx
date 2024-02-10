@@ -17,11 +17,11 @@ export default function RootLayout({
 	}>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-				{children}
+      <body className={`${inter.className} antialiased md:flex`}>
 				<Navbar
-					className="fixed bottom-0 w-full"
+					className="fixed bottom-0 p-3 w-full h-20 bg-gray-100 flex justify-around align-middle md:relative md:flex-col md:justify-start md:h-screen md:w-3/12"
 				/>
+				<div className="md:w-9/12">{children}</div>
 			</body>
     </html>
   );

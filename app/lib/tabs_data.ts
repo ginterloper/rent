@@ -4,6 +4,7 @@ export const tabData = {
 			id: 1,
 			type: 'select',
 			label: 'Выберите категорию',
+			name: 'category',
 			necessary: true,
 			options:[ 
 				{
@@ -24,6 +25,7 @@ export const tabData = {
 			id: 2,
 			type: 'select',
 			label: 'Выберите тип',
+			name: 'type',
 			options:[ 
 				{
 					id: 0,
@@ -94,7 +96,9 @@ export const tabData = {
 		{ 
 			id: 4,
 			type: 'text',
+			textType: 'number',
 			label: 'Выберите цену',
+			necessary: true,
 			placeholder: 'Цена' 
 		}
 	]

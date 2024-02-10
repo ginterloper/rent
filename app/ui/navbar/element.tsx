@@ -1,29 +1,47 @@
 'use client';
-import { useState } from 'react'
-import { HomeIcon, PlusCircleIcon, MagnifyingGlassCircleIcon, HeartIcon, UserIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
+
+export interface Link {
+	label: string;
+	href: string;
+	icon: React.ElementType;
+};
 
 interface Props {
-	type: string;
-	className?: string;
+	links: Link[];
 }
 
-export default function Element({ type, className }: Props) {
-	const iconStyles = 'text-blue-400 w-9 h-9';
-
-	const [icons] = useState({
-		home: { icon: <HomeIcon className={iconStyles} />, label: 'Главная' },
-		liked: { icon: <HeartIcon className={iconStyles} />, label: 'Избранное' },
-		add: { icon: <PlusCircleIcon className={iconStyles} />, label: 'Разместить' },
-		find: { icon: <MagnifyingGlassCircleIcon className={iconStyles} />, label: 'Поиск' },
-		user: { icon: <UserIcon className={iconStyles} />, label: 'Профиль' },
-	})
-
-	const selectedIcon = icons[type] || { icon: null, label: '' };
-
+export default function Element({ links }: Props) {
+	const pathname = usePathname();
 	return (
-		<div className={`h-full w-full p-3.5 flex flex-col justify-center items-center bg-blue-900 hover:bg-blue-900/90 ${className}`}>
-			{selectedIcon.icon}
-			<label className='text-white text-xs hidden sm:block'>{selectedIcon.label}</label>
-		</div>
-	)
-}
+		<>
+			{links.map(link => (
+				<Link
+				key={link.label}
+				href={link.href}
+				className={clsx(
+					'h-14 rounded-xl flex md:my-2 flex-row items-center justify-center md:h-14 md:w-full md:flex-row md:justify-start md:pl-4',
+					{
+						'bg-blue-200 hover:bg-blue-200 w-fit px-4': pathname === link.href,
+					},
+					{
+						'w-14 bg-gray-100 hover:bg-blue-200': pathname !== link.href,
+					},
+				)}>
+					<link.icon className="w-8 h-8 text-blue-600" />
+					<label className={clsx(
+						'text-sm text-blue-600 mx-2 hover:cursor-pointer',
+						{
+							'': pathname === link.href,
+						},
+						{
+							'hidden md:block': pathname !== link.href,
+						},
+					)}>{link.label}</label>
+				</Link>
+			))}
+		</>
+	);
+};
