@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-		"update-dev": "node update-dev.js",
-		"update-main": "node update-main.js"
+    "update-dev": "node update-dev.js",
+    "update-main": "node update-main.js",
+    "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -16,10 +17,12 @@
     "@vercel/postgres": "^0.7.2",
     "auth": "^1.0.2",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.2",
     "next": "^14.1.0",
     "next-auth": "^4.24.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "vercel": "^33.5.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import { CubeIcon } from "@heroicons/react/24/solid";
+import Posts from "@/app/ui/posts";
 
 export default function Home() {
 	return (
@@ -20,6 +21,7 @@ export default function Home() {
 					</p>
 				</div>
 			</div>
+			<Posts/>
 		</main>
 	);
 }
