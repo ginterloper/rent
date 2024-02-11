@@ -3,7 +3,7 @@ export const tabData = {
 		{ 
 			id: 1,
 			type: 'select',
-			label: 'Категория',
+			placeholder: 'Категория',
 			name: 'category',
 			necessary: true,
 			options:[
@@ -20,7 +20,7 @@ export const tabData = {
 		{ 
 			id: 2,
 			type: 'select',
-			label: 'Тип',
+			placeholder: 'Тип',
 			name: 'type',
 			options:[ 
 				{
@@ -44,7 +44,7 @@ export const tabData = {
 		{ 
 			id: 1,
 			type: 'select',
-			label: 'Категория',
+			placeholder: 'Категория',
 			name: 'category',
 			options:[
 				{
@@ -60,7 +60,7 @@ export const tabData = {
 		{ 
 			id: 2,
 			type: 'select',
-			label: 'Тип',
+			placeholder: 'Тип',
 			name: 'type',
 			options:[ 
 				{
