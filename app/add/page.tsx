@@ -4,9 +4,9 @@ import { tabData } from '@/app/lib/tabs_data';
 
 export default function Add() {
 	return (
-		<main className="flex flex-col min-h-screen">
+		<main className="flex flex-col min-h-screen p-4">
 			<Tabs
-				className="w-30 sm:w-full p-16"
+				className="w-30 sm:w-full"
 				tabData={tabData}
 			/>
 			<Image

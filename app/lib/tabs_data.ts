@@ -3,14 +3,10 @@ export const tabData = {
 		{ 
 			id: 1,
 			type: 'select',
-			label: 'Выберите категорию',
+			label: 'Категория',
 			name: 'category',
 			necessary: true,
-			options:[ 
-				{
-					id: 0,
-					label: "Категория"
-				},
+			options:[
 				{
 					id: 1,
 					label: "Автомобиль"
@@ -24,13 +20,9 @@ export const tabData = {
 		{ 
 			id: 2,
 			type: 'select',
-			label: 'Выберите тип',
+			label: 'Тип',
 			name: 'type',
 			options:[ 
-				{
-					id: 0,
-					label: "Тип"
-				},
 				{
 					id: 1,
 					label: "Крутой"
@@ -44,7 +36,7 @@ export const tabData = {
 		{ 
 			id: 3,
 			type: 'text',
-			label: 'Выберите название',
+			name: 'name',
 			placeholder: 'Название' 
 		}
 	],
@@ -52,12 +44,9 @@ export const tabData = {
 		{ 
 			id: 1,
 			type: 'select',
-			label: 'Выберите категорию',
-			options:[ 
-				{
-					id: 0,
-					label: "Категория"
-				},
+			label: 'Категория',
+			name: 'category',
+			options:[
 				{
 					id: 1,
 					label: "One"
@@ -71,12 +60,9 @@ export const tabData = {
 		{ 
 			id: 2,
 			type: 'select',
-			label: 'Выберите тип',
+			label: 'Тип',
+			name: 'type',
 			options:[ 
-				{
-					id: 0,
-					label: "Тип"
-				},
 				{
 					id: 1,
 					label: "One"
@@ -89,15 +75,15 @@ export const tabData = {
 		},
 		{ 
 			id: 3,
+			name: 'name',
 			type: 'text',
-			label: 'Выберите название',
 			placeholder: 'Название' 
 		},
 		{ 
 			id: 4,
+			name: 'price',
 			type: 'text',
 			textType: 'number',
-			label: 'Выберите цену',
 			necessary: true,
 			placeholder: 'Цена' 
 		}

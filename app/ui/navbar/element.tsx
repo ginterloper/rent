@@ -20,7 +20,7 @@ export default function Element({ links }: Props) {
 			{links.map(link => (
 				<Link
 				key={link.label}
-				href={link.href}
+				href={pathname === link.href ? '#' : link.href}
 				className={clsx(
 					'h-14 rounded-xl flex md:my-2 flex-row items-center justify-center md:h-14 md:w-full md:flex-row md:justify-start md:pl-4',
 					{
@@ -30,9 +30,9 @@ export default function Element({ links }: Props) {
 						'w-14 bg-gray-100 hover:bg-blue-200': pathname !== link.href,
 					},
 				)}>
-					<link.icon className="w-8 h-8 text-blue-600" />
+					<link.icon className="w-8 h-8 text-blue-500" />
 					<label className={clsx(
-						'text-sm text-blue-600 mx-2 hover:cursor-pointer',
+						'text-sm text-blue-500 mx-2 hover:cursor-pointer',
 						{
 							'': pathname === link.href,
 						},
