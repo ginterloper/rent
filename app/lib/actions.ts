@@ -17,8 +17,10 @@ const PostSchema = z.object({
 	}).min(3, {
 		message: 'Название должно быть не меньше 3 символов.',
 	}),
-	price: z.number( {
-		invalid_type_error: 'Пожалуйста напишите цену в числовом формате.',
+	price: z.coerce
+	.number()
+	.gt(0, {
+		message: 'Введите значение больше $0.'
 	}),
 	date: z.string(),
 });
@@ -42,7 +44,6 @@ export async function createPost(prevState: State, formData: FormData) {
 		name: formData.get('name'),
 		price: formData.get('price'),
 	});
-	console.log(formData.get('price'));
 
 	if (!validatedFields.success) {
 		return {

@@ -6,14 +6,14 @@ interface Option {
 }
 
 interface Props {
-	name: string;
-	label: string;
+	name: string | '';
+	placeholder: string | '';
 	options: Option[];
 	errors: string[];
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectField: React.FC<Props> = ({ name, label, options, errors, onChange }) => {
+const SelectField: React.FC<Props> = ({ name, placeholder, options, errors, onChange }) => {
 	return (
 		<React.Fragment>
 			<div className='w-full p-2'>
@@ -26,7 +26,7 @@ const SelectField: React.FC<Props> = ({ name, label, options, errors, onChange }
 					className='w-full p-2 rounded-md shadow-md'
 				>
 					<option value="" disabled>
-						{label}
+						{placeholder}
 					</option>
 					{options.map((option) => (
 						<option key={option.id} value={option.id}>
