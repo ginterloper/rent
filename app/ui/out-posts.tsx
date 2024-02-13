@@ -9,7 +9,7 @@ export default async function Posts() {
 		c.name AS category_name,
 		t.name AS type_name
 	FROM
-		posts p
+		outPosts p
 	JOIN
 		category c ON p.category = c.id
 	JOIN
@@ -21,11 +21,11 @@ export default async function Posts() {
 			<table className="table-auto w-full rounded-lg">
 				<thead className="rounded-lg">
 					<tr className="bg-gray-200 rounded-lg">
-						<th>Название</th>
-						<th>Категория</th>
-						<th>Тип</th>
-						<th>Цена</th>
-						<th>Дата</th>
+						<th>Name</th>
+						<th>Category</th>
+						<th>Type</th>
+						<th>Price</th>
+						<th>Date</th>
 					</tr>
 				</thead>
 				<tbody>

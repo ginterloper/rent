@@ -1,15 +1,56 @@
-export function saveFormDataAsJSON(formData: Record<string, any>) {
-  // Собираем данные из формы в формат JSON
-  const jsonData = JSON.stringify(formData);
-  // Создаем объект URL из JSON-данных
-  const blob = new Blob([jsonData], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  // Создаем ссылку для скачивания файла и эмулируем клик по ней
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'form_data.json';
-  document.body.appendChild(link);
-  link.click();
-  // Освобождаем ресурсы после скачивания файла
-  URL.revokeObjectURL(url);
+import { sql } from '@vercel/postgres';
+import { Option } from './definitions';
+
+export async function fetchCategories() {
+  try {
+    const data = await sql<Option>`
+      SELECT
+        id,
+        name
+      FROM category
+      ORDER BY name ASC
+    `;
+
+    const categories = data.rows;
+    return categories;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all categories.');
+  }
+}
+
+export async function fetchTypes() {
+  try {
+    const data = await sql<Option>`
+      SELECT
+        id,
+        name
+      FROM type
+      ORDER BY name ASC
+    `;
+
+    const types = data.rows;
+    return types;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all types.');
+  }
+}
+
+export async function fetchTabs() {
+  try {
+    const data = await sql<Option>`
+      SELECT
+        id,
+        name
+      FROM addtabs
+      ORDER BY name ASC
+    `;
+
+    const tabs = data.rows;
+    return tabs;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch all tabs.');
+  }
 }

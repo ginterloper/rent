@@ -1,21 +1,15 @@
-import Image from "next/image";
 import Tabs from "@/app/ui/tabs";
-import { tabData } from '@/app/lib/tabs_data';
+import { fetchCategories, fetchTabs, fetchTypes } from '@/app/lib/data';
 
-export default function Add() {
+export default async function Add() {
+	const [tabs, categories, types] = await Promise.all([
+		fetchTabs(),
+    fetchCategories(),
+    fetchTypes(),
+  ]);
 	return (
-		<main className="flex flex-col min-h-screen p-4">
-			<Tabs
-				className="w-30 sm:w-full"
-				tabData={tabData}
-			/>
-			<Image
-				src="/desktop.png"
-				width={1000}
-				height={760}
-				className="hidden md:block"
-				alt="Screenshots of the dashboard project showing desktop version"
-			/>
-		</main>
+		<div className="flex flex-col items-center min-h-screen p-4">
+			<Tabs tabs={tabs} categories={categories} types={types}/>
+		</div>
 	);
 }

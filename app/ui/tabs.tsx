@@ -1,40 +1,54 @@
 'use client';
 import { Tab } from '@headlessui/react'
-import Form, { Element } from "@/app/ui/form";
+import AddRentForm from "@/app/ui/add-tabs/add-rent-form"
+import AddRentOutForm from "@/app/ui/add-tabs/add-rent-out-form"
+import { Option } from '@/app/lib/definitions';
 
-interface Props {
-	className?: string;
-	tabData: { [key: string]: Element[] };
+function classNames(...classes:string[]) {
+	return classes.filter(Boolean).join(' ')
 }
 
-export default function Tabs({ className, tabData }: Props ) {
+interface Props {
+	tabs: Option[];
+	categories: Option[];
+	types: Option[];
+}
+
+export default function Tabs({tabs, categories, types}: Props) {
 	return (
-		<div className={className}>
+		<div className="w-full max-w-md p-2 sm:px-0">
 			<Tab.Group>
-				<Tab.List className="flex space-x-1 rounded-xl bg-gray-200 p-1">
-					{Object.keys(tabData).map((tabData) => (
+				<Tab.List className="flex space-x-1 rounded-xl bg-gray-100 p-1">
+					{(tabs).map((tab) => (
 						<Tab
-							key={tabData}
+							key={tab.id}
 							className={({ selected }) =>
-									`w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-									${selected
-										? 'bg-white text-blue-500 shadow focus:outline-none'
-										: 'text-gray-500 hover:bg-gray-300 hover:text-white'}`
+								classNames(
+									'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
+									'focus:outline-none',
+									selected
+										? 'bg-white text-blue-500 shadow'
+										: 'text-gray-400 hover:bg-gray-200 hover:text-white'
+								)
 							}
 						>
-							{tabData}
+							{tab.name}
 						</Tab>
 					))}
 				</Tab.List>
 				<Tab.Panels className="mt-2">
-					{Object.values(tabData).map((els:Element[], idx) => (
 						<Tab.Panel
-							key={idx}
-							className='rounded-xl bg-white p-3 focus:outline-none flex flex-col items-center'
+							key={1}
+							className='rounded-xl bg-gray-100 p-3'
 						>
-							<Form elements={els}/>
+							<AddRentForm categories={categories} types={types}/>
 						</Tab.Panel>
-					))}
+						<Tab.Panel
+							key={2}
+							className='rounded-xl bg-gray-100 p-3'
+						>
+							<AddRentOutForm categories={categories} types={types}/>
+						</Tab.Panel>
 				</Tab.Panels>
 			</Tab.Group>
 		</div>

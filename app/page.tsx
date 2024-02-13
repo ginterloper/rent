@@ -1,5 +1,7 @@
 import { CubeIcon } from "@heroicons/react/24/solid";
 import Posts from "@/app/ui/posts";
+import OutPosts from "@/app/ui/out-posts";
+import { revalidatePath } from 'next/cache';
 
 export default function Home() {
 	return (
@@ -20,8 +22,9 @@ export default function Home() {
 						<strong>Добро пожаловать на Авито.</strong> Здесь вы можете рамещать объявления
 					</p>
 				</div>
+				<Posts/>
+				<OutPosts/>
 			</div>
-			<Posts/>
 		</main>
 	);
 }
