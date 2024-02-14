@@ -6,3 +6,4 @@ function git(command) {
 
 git('checkout dev');
 git('merge main');
+git('push');

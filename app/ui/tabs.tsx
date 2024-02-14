@@ -39,13 +39,13 @@ export default function Tabs({tabs, categories, types}: Props) {
 				<Tab.Panels className="mt-2">
 						<Tab.Panel
 							key={1}
-							className='rounded-xl bg-gray-100 p-3'
+							className='rounded-xl bg-gray-100 py-4 px-10'
 						>
 							<AddRentForm categories={categories} types={types}/>
 						</Tab.Panel>
 						<Tab.Panel
 							key={2}
-							className='rounded-xl bg-gray-100 p-3'
+							className='rounded-xl bg-gray-100 py-4 px-10'
 						>
 							<AddRentOutForm categories={categories} types={types}/>
 						</Tab.Panel>

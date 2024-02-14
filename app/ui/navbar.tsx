@@ -10,27 +10,27 @@ export default function Navbar({ className }: Props) {
 	const links = [
 		{
 			label: 'Главная',
-			href: '/',
+			href: '/rent',
 			icon: HomeIcon
 		},
 		{
 			label: 'Избранное',
-			href: '/favorites',
+			href: '/rent/favorites',
 			icon: HeartIcon,
 		},
 		{
 			label: 'Разместить',
-			href: '/add',
+			href: '/rent/add',
 			icon: PlusIcon
 		},
 		{
 			label: 'Поиск',
-			href: '/find',
+			href: '/rent/find',
 			icon: MagnifyingGlassIcon
 		},
 		{
 			label: 'Профиль',
-			href: '/profile',
+			href: '/rent/profile',
 			icon: UserIcon
 		},
 	];

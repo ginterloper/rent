@@ -3,6 +3,27 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Неверные данные.';
+        default:
+          return 'Похоже что-то пошло не так.';
+      }
+    }
+    throw error;
+  }
+}
 
 const PostSchema = z.object({
 	id: z.string(),
@@ -79,8 +100,8 @@ export async function createPost(prevState: CreatePostState, formData: FormData)
 		};
 	}
 
-	revalidatePath('/');
-	redirect('/');
+	revalidatePath('/rent');
+	redirect('/rent');
 }
 
 export async function createOutPost(prevState: CreatePostState, formData: FormData) {
@@ -112,6 +133,6 @@ export async function createOutPost(prevState: CreatePostState, formData: FormDa
 		};
 	}
 
-	revalidatePath('/');
-	redirect('/');
+	revalidatePath('/rent');
+	redirect('/rent');
 }

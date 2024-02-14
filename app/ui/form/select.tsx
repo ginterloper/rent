@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Option } from "@/app/lib/definitions";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 
 interface Props {
 	label: string;
@@ -18,11 +17,6 @@ export default function Select({label, options, state, error}: Props) {
 		<div className='w-full my-2'>
 			<Listbox name={error} value={selectedOption} onChange={setSelectedOption}>
 				<div className="relative w-full">
-				<label className="relative w-full block">
-					{state.errors?.[error] ?
-						<ExclamationCircleIcon className="pointer-events-none w-6 h-6 absolute top-1/2 transform -translate-y-1/2 right-7 z-10 text-red-500" />
-						: <></>
-					}
 					<Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
 							<span className="block truncate">{selectedOption.name}</span>
 							<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -32,7 +26,6 @@ export default function Select({label, options, state, error}: Props) {
 								/>
 							</span>
 						</Listbox.Button>
-				</label>
 					<Transition
 						as={Fragment}
 						leave="transition ease-in duration-100"

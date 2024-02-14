@@ -6,8 +6,8 @@ import Navbar from "@/app/ui/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Website for rent",
+  title: "Авито Аренда",
+  description: "Сайт для аренды недвижимости и транспорта",
 };
 
 export default function RootLayout({
@@ -17,11 +17,11 @@ export default function RootLayout({
 	}>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased md:flex`}>
+      <body className={`${inter.className} antialiased md:flex md:flex-col`}>
 				<Navbar
-					className="fixed bottom-0 p-3 w-full h-20 bg-gray-100 flex justify-around align-middle md:relative md:flex-col md:justify-start md:h-screen md:w-3/12"
+					className="fixed rounded-t-xl md:rounded-b-xl z-10 bottom-0 p-3 w-full h-20 bg-gray-100 flex justify-around items-center md:relative md:gap-4 md:h-35 md:w-full"
 				/>
-				<div className="md:w-9/12">{children}</div>
+				<div className="md:w-full z-0">{children}</div>
 			</body>
     </html>
   );

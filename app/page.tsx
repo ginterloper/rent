@@ -1,30 +1,62 @@
-import { CubeIcon } from "@heroicons/react/24/solid";
-import Posts from "@/app/ui/posts";
-import OutPosts from "@/app/ui/out-posts";
-import { revalidatePath } from 'next/cache';
-
-export default function Home() {
+export default function Hero() {
 	return (
-		<main className="flex flex-col min-h-screen p-4">
-			<div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52 text-white">
-				<CubeIcon className="h-8 w-8 mr-2 md:h-11 md:w-11" />
-				<p className="text-3xl md:text-5xl">
-					<strong>
-						Авито
-					</strong>
-				</p>
-			</div>
-			<div className="mt-4 flex grow flex-col gap-4">
-				<div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10">
-					<p
-						className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}
-					>
-						<strong>Добро пожаловать на Авито.</strong> Здесь вы можете рамещать объявления
-					</p>
+		<div className="bg-white">
+			<div className="relative isolate px-6 pt-14 lg:px-8">
+				<div
+					className="absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+					aria-hidden="true"
+				>
+					<div
+						className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+						style={{
+							clipPath:
+								'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+						}}
+					/>
 				</div>
-				<Posts/>
-				<OutPosts/>
+				<div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+					<div className="hidden sm:mb-8 sm:flex sm:justify-center">
+						<div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+							Мы добавили много новых функция.{' '}
+							<a href="#" className="font-semibold text-blue-500">
+								<span className="absolute inset-0" aria-hidden="true" />
+								Подробнее <span aria-hidden="true">&rarr;</span>
+							</a>
+						</div>
+					</div>
+					<div className="text-center">
+						<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+							Добро пожаловать в Авито Аренда
+						</h1>
+						<p className="mt-6 text-lg leading-8 text-gray-600">
+						Авито Аренда - удобное веб-приложение, которое позволяет пользователям легко находить и размещать объявления о аренде недвижимости и транспорта. С помощью этой платформы пользователи могут быстро найти идеальное жилье или автотранспорт для аренды, а также разместить свои собственные объявления для сдачи.
+						</p>
+						<div className="mt-10 flex items-center justify-center gap-x-6">
+							<a
+								href="/rent"
+								className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+							>
+								Начать пользоваться
+							</a>
+							<a href="/info" className="text-sm font-semibold leading-6 text-gray-900">
+								Подробнее <span aria-hidden="true">→</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div
+					className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+					aria-hidden="true"
+				>
+					<div
+						className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+						style={{
+							clipPath:
+								'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+						}}
+					/>
+				</div>
 			</div>
-		</main>
-	);
+		</div>
+	)
 }
