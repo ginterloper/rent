@@ -22,7 +22,7 @@ export default function Element({ links }: Props) {
 					key={link.label}
 					href={pathname === link.href ? '#' : link.href}
 					className={clsx(
-						'h-14 rounded-xl flex md:my-2 flex-row items-center justify-center md:h-14 md:w-full md:flex-row md:px-4',
+						'h-14 rounded-xl flex md:my-2 flex-row items-center justify-center md:w-fit md:h-14 md:flex-row md:px-4',
 						{
 							'bg-blue-200 hover:bg-blue-200 w-fit px-4': pathname === link.href,
 						},
@@ -33,7 +33,7 @@ export default function Element({ links }: Props) {
 						<link.icon className={clsx(
 							'w-8 h-8 text-blue-500',
 							{
-								'md:hidden': link.href !== "/home" && link.href !== "/profile",
+								'md:hidden': link.href !== "/rent" && link.href !== "/rent/profile",
 							}
 						)} />
 						<label className={clsx(
@@ -42,7 +42,7 @@ export default function Element({ links }: Props) {
 								'hidden md:block': pathname !== link.href,
 							},
 							{
-								'md:hidden': link.href === "/home" || link.href === "/profile",
+								'md:hidden': link.href === "/rent" || link.href === "/rent/profile",
 							},
 						)}>{link.label}</label>
 					</Link>

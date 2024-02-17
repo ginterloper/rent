@@ -17,25 +17,34 @@ export default async function Posts() {
 	`;
 
 	return (
-		<div className="rounded-lg bg-gray-50 px-6 py-10">
-			<table className="table-auto w-full rounded-lg">
-				<thead className="rounded-lg">
-					<tr className="bg-gray-200 rounded-lg">
-						<th>Название</th>
-						<th>Категория</th>
-						<th>Тип</th>
-						<th>Цена</th>
-						<th>Дата</th>
+		<div className="relative overflow-x-auto rounded-xl bg-gray-100 px-6 py-10 hidden md:block">
+			<table className="table-auto w-full text-center">
+				<thead className="bg-gray-200">
+					<tr>
+						<th className="p-3 rounded-tl-xl">Название</th>
+						<th className="p-3">Категория</th>
+						<th className="p-3">Тип</th>
+						<th className="p-3">Цена</th>
+						<th className="p-3 rounded-tr-xl">Дата</th>
 					</tr>
 				</thead>
-				<tbody>
-					{rows.map((row) => (
+				<tbody className="bg-white">
+					{rows.map((row, id) => (
+						id + 1 === rows.length ?
 						<tr key={row.post_id}>
-							<td>{row.post_name}</td>
-							<td>{row.category_name}</td>
-							<td>{row.type_name}</td>
-							<td>{row.price}</td>
-							<td>{new Date(row.date).toLocaleString().split(',')[0]}</td>
+							<td className="p-3 rounded-bl-xl">{row.post_name}</td>
+							<td className="p-3">{row.category_name}</td>
+							<td className="p-3">{row.type_name}</td>
+							<td className="p-3">{row.price}</td>
+							<td className="p-3 rounded-br-xl">{new Date(row.date).toLocaleString().split(',')[0]}</td>
+						</tr>
+						:
+						<tr key={row.post_id}>
+							<td className="p-3">{row.post_name}</td>
+							<td className="p-3">{row.category_name}</td>
+							<td className="p-3">{row.type_name}</td>
+							<td className="p-3">{row.price}</td>
+							<td className="p-3">{new Date(row.date).toLocaleString().split(',')[0]}</td>
 						</tr>
 					))}
 				</tbody>

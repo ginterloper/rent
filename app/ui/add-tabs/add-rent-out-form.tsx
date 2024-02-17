@@ -3,7 +3,7 @@ import { useFormState } from 'react-dom';
 import { createOutPost } from '@/app/lib/actions'
 import { Option } from '@/app/lib/definitions';
 import Select from '@/app/ui/form/select';
-import SubmitButton from '@/app/ui/form/submit-button';
+import Button from '@/app/ui/form/button';
 import Text from '@/app/ui/form/textbox';
 
 interface Props {
@@ -21,7 +21,12 @@ export default function AddRentForm({categories, types}: Props) {
 				<Select state={state} label="Тип" options={types} error="type"/>
 				<Text state={state} placeholder="Название" type="text" error="name"/>
 				<Text state={state} placeholder="Цена" type="number" error="price"/>
-				<SubmitButton label="Создать"/>
+				<Button
+					type="submit"
+					className="w-full my-2 justify-center"
+				>
+					Создать
+				</Button>
 			</form>
 		</div>
 	)

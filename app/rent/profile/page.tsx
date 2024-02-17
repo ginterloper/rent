@@ -1,22 +1,15 @@
-import { signOut } from '@/auth';
-import { Button } from '@/app/ui/form/button';
-import { PowerIcon } from "@heroicons/react/24/solid";
+import Link from 'next/link';
 
 export default function Profile() {
 	return (
-		<>
-			<form
-          action={async () => {
-            'use server';
-            await signOut();
-          }}
-        >
-          <Button className="m-10">
-            <PowerIcon className="w-6 mr-2" />
-						Sign Out
-          </Button>
-        </form>
-		</>
+		<main className="relative flex flex-col items-center justify-center min-h-screen">
+			<Link
+				href={'/rent/profile/sign-out'}
+				className="block py-2 px-4 bg-blue-500 text-white rounded-md"
+			>
+				Выйти
+			</Link>
+		</main>
 	)
 }
 
