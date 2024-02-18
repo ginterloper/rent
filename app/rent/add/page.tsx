@@ -1,9 +1,9 @@
-import Tabs from "@/app/ui/tabs";
-import { fetchCategories, fetchTabs, fetchTypes } from '@/app/lib/data';
+import Tabs from "@/app/ui/add-tabs";
+import { fetchCategories, fetchAddTabs, fetchTypes } from '@/app/lib/data';
 
 export default async function Add() {
 	const [tabs, categories, types] = await Promise.all([
-		fetchTabs(),
+		fetchAddTabs(),
     fetchCategories(),
     fetchTypes(),
   ]);

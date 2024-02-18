@@ -1,22 +1,21 @@
 'use client';
 import { Tab } from '@headlessui/react'
-import AddRentForm from "@/app/ui/add-tabs/add-rent-form"
-import AddRentOutForm from "@/app/ui/add-tabs/add-rent-out-form"
-import { Option } from '@/app/lib/definitions';
+import Post from '@/app/ui/find-tabs/post';
+import { LoadMore } from '@/app/ui/load-more';
+import { TabType, PostType } from '@/app/lib/definitions';
 
 function classNames(...classes:string[]) {
 	return classes.filter(Boolean).join(' ')
 }
 
 interface Props {
-	tabs: Option[];
-	categories: Option[];
-	types: Option[];
+	tabs: TabType[];
+	posts: PostType[];
 }
 
-export default function Tabs({tabs, categories, types}: Props) {
+export default function Tabs({tabs, posts}: Props) {
 	return (
-		<div className="w-full max-w-md p-2 sm:px-0">
+		<div className="w-full max-w-lg p-2 sm:px-0 sm:mb-0">
 			<Tab.Group>
 				<Tab.List className="flex space-x-1 rounded-xl bg-gray-100 p-1">
 					{(tabs).map((tab) => (
@@ -39,15 +38,13 @@ export default function Tabs({tabs, categories, types}: Props) {
 				<Tab.Panels className="mt-2">
 						<Tab.Panel
 							key={1}
-							className='rounded-xl bg-gray-100 py-4 px-10'
+							className='bg-gray-100 rounded-xl grid p-2 grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8'
 						>
-							<AddRentForm categories={categories} types={types}/>
-						</Tab.Panel>
-						<Tab.Panel
-							key={2}
-							className='rounded-xl bg-gray-100 py-4 px-10'
-						>
-							<AddRentOutForm categories={categories} types={types}/>
+							<Post
+								posts={posts}
+							>
+							</Post>
+							<LoadMore></LoadMore>
 						</Tab.Panel>
 				</Tab.Panels>
 			</Tab.Group>

@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { PostType } from '@/app/lib/definitions';
 
 export async function authenticate(
   prevState: string | undefined,

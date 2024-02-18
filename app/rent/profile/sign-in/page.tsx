@@ -2,7 +2,7 @@
 import React from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
-import { Button } from '@/app/ui/form/button';
+import Button from '@/app/ui/form/button';
 import { ExclamationCircleIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { PhoneIcon, KeyIcon } from "@heroicons/react/24/outline";
 
